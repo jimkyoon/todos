@@ -7,9 +7,28 @@
   <title>Document</title>
   <link rel="stylesheet" href="./style.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script>
+    fetch('/todo/all')
+    .then(result => result.json())
+    .then((items) => {
+      items = Object.values(items);
+      items = items[0];
+      const ol = document.createElement('ol');
+      ol.setAttribute('id', 'sleep');
+      items.forEach(item => {
+        const listItem = document.createElement('li');
+        listItem.innerHTML = item.todoItem;
+        ol.appendChild(listItem);
+      });
+      document.body.appendChild(ol);
+    });
+  </script>
+  <!-- <script src="prescript.js"></script> -->
 </head>
 <body>
   <h1>Hello World!</h1>
-</body>
+  <input placeholder="test text" id="testInput">
+  <button id="testButton">Add Todo Item</button>
   <script src="script.js"></script>
+</body>
 </html>
